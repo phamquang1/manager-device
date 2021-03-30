@@ -1,0 +1,21 @@
+<form class="form" [formGroup]="form" (ngSubmit)="login()">
+  <!-- <mat-form-field class="form__input">
+    <input matInput placeholder="Email Address" type="email" formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <input matInput placeholder="Password" type="password" formControlName="password">
+  </mat-form-field> -->
+  <div class="form-group">
+    <input class="form-control" id="exampleInputEmail1" autocomplete="off" placeholder="Username"
+      formControlName="email">
+  </div>
+  <div class="form-group">
+    <input class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password">
+  </div>
+
+  <div class="form-actions">
+    <button class="form-actions__login" mat-raised-button color="primary" type="submit">Login</button>
+    <button class="form-actions__forget" mat-button>Forget password</button>
+  </div>
+</form>

@@ -1,0 +1,125 @@
+<app-layout>
+  <!-- <mat-toolbar class="page-header" role="heading">
+    <h1>Dashboard</h1>
+    <button mat-flat-button color="warn">Latest Reports</button>
+  </mat-toolbar> -->
+
+
+  <div class="charts-wrapper">
+    <div class="chart">
+      <app-visits-chart [visitsChartData]="visitsChartData$ | async"></app-visits-chart>
+    </div>
+    <div class="chart">
+      <app-performance-chart [performanceChartData]="performanceChartData$ | async"></app-performance-chart>
+    </div>
+    <div class="chart">
+      <!-- <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart> -->
+      <app-revenue-chart [revenueCharData]="revenueChartData$ | async"></app-revenue-chart>
+
+    </div>
+    <div class="chart">
+      <app-revenue-chart [revenueCharData]="revenueChartData$ | async"></app-revenue-chart>
+    </div>
+  </div>
+  <!-- dash -->
+  <div class="container-fluid">
+    <div class="card">
+      <div class="row p-2">
+        <div class="col-md-4 mb-4">
+          <div class="card border border-primary">
+            <div class="card-header text-center text-center">
+              Thiết bị 1
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Name video:</li>
+              <li class="list-group-item">Size:</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border border-danger">
+            <div class="card-header text-center">
+              Thiết bị 1
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Name video:</li>
+              <li class="list-group-item">Size:</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-center">
+              Thiết bị 1
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Name video:</li>
+              <li class="list-group-item">Size:</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-center">
+              Thiết bị 1
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Name video:</li>
+              <li class="list-group-item">Size:</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-center">
+              Thiết bị 1
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name</li>
+              <li class="list-group-item">Name video:</li>
+              <li class="list-group-item">Size:</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end dash -->
+
+  <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart>
+
+  <app-project-stat-chart [projectsStatsData]="projectsStatsData$ | async"></app-project-stat-chart>
+
+  <app-support-requests [supportRequestData]="supportRequestData$ | async"></app-support-requests>
+
+  <app-footer></app-footer>
+</app-layout>

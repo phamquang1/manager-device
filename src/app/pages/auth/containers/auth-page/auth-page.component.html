@@ -1,0 +1,79 @@
+<div class="auth-page">
+  <div class="auth-page__content-block">
+    <div class="auth-page__content-wrapper">
+      <mat-tab-group class="auth-page__group">
+        <mat-tab label="Login">
+          <h4 class="auth-page__group-title">VuaOP</h4>
+          <div class="auth-page__google-button-wrapper">
+            <button mat-raised-button class="auth-page__google-button">
+              <img class="auth-page__google-button-icon" src="./assets/auth/google.svg" alt="google">Sign in with Google
+            </button>
+          </div>
+
+          <div class="auth-page__border-wrapper">
+            <div class="auth-page__border-line"></div>
+            <p class="auth-page__border-title">or</p>
+            <div class="auth-page__border-line"></div>
+          </div>
+
+          <app-login-form (sendLoginForm)="sendLoginForm()"></app-login-form>
+
+        </mat-tab>
+        <mat-tab label="New User">
+          <h4 class="auth-page__group-title">Welcome!</h4>
+          <p class="auth-page__group-sub-title">Create you account</p>
+
+          <app-sign-form (sendSignForm)="sendSignForm()"></app-sign-form>
+
+          <div class="auth-page__border-wrapper">
+            <div class="auth-page__border-line"></div>
+            <p class="auth-page__border-title">or</p>
+            <div class="auth-page__border-line"></div>
+          </div>
+
+          <div class="auth-page__google-button-wrapper">
+            <button mat-raised-button class="auth-page__google-button">
+              <img class="auth-page__google-button-icon" src="./assets/auth/google.svg" alt="google">Sign in with Google
+            </button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+      <p class="auth-page__footer-title">© 2021-{{todayDate | year}} <a>Pham Dinh Quang</a>,
+        demos.</p>
+    </div>
+  </div>
+  <div class="auth-page__logo">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://anhdepblog.com/wp-content/uploads/2018/08/anh-la-co-viet-nam-dep-1.png"
+            class="d-block w-100" style="height: 100vh;"
+            alt="https://anhdepblog.com/wp-content/uploads/2018/08/anh-la-co-viet-nam-dep-1.png">
+        </div>
+        <div class="carousel-item">
+          <img src="https://anhdepblog.com/wp-content/uploads/2018/08/anh-la-co-viet-nam-dep-1.png"
+            class="d-block w-100" style="height: 100vh;"
+            alt="https://anhdepblog.com/wp-content/uploads/2018/08/anh-la-co-viet-nam-dep-1.png">
+        </div>
+        <div class="carousel-item">
+          <img src="https://anhdepblog.com/wp-content/uploads/2018/08/anh-la-co-viet-nam-dep-1.png"
+            class="d-block w-100" style="height: 100vh;"
+            alt="https://anhdepblog.com/wp-content/uploads/2018/08/anh-la-co-viet-nam-dep-1.png">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!-- <div class="auth-page__logo-wrapper">
+      <img class="auth-page__logo-img" src="./assets/auth/logo.svg" alt="logo">
+      <h6 class="auth-page__logo-title">VuaOP</h6>
+    </div> -->
+  </div>
+</div>
