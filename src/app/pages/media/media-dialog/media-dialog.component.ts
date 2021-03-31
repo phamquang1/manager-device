@@ -15,7 +15,7 @@ export class MediaDialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data)
+    console.log(this.data);
   }
   save() {
     this.dialogRef.close(this.data);
