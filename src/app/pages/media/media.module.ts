@@ -7,13 +7,14 @@ import { SharedModule } from '../../shared/shared.module';
 import { MediaDialogComponent } from './media-dialog/media-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { CreateEditDialogComponent } from './create-edit-dialog/create-edit-dialog.component';
 
 
 
 
 
 @NgModule({
-  declarations: [MediaComponent, MediaDialogComponent],
+  declarations: [MediaComponent, MediaDialogComponent, CreateEditDialogComponent],
   imports: [
     CommonModule,
     MediaRoutingModule,

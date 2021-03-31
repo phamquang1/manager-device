@@ -1,8 +1,8 @@
 <app-layout>
     <div class="card m-3 p-3">
         <div class="d-flex justify-content-end mb-3">
-            <button type="button" class="btn btn-primary mr-1">Thêm mới</button>
-            <button type="button" class="btn btn-success mr-1">Sửa </button>
+            <button type="button" class="btn btn-primary mr-1" (click)="openCreateEdit()">Thêm mới</button>
+            <button type="button" class="btn btn-success mr-1" (click)="openCreateEdit(selectedMedia)">Sửa </button>
             <button type="button" class="btn btn-danger">Xóa</button>
         </div>
         <table class="table">
@@ -15,7 +15,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr (click)="onClickMedia()" [ngClass]="{
+                    'is-selected': selectedMedia === 1
+                  }">
                     <th scope="row">1</th>
                     <td (click)="openMediaDialog()">Mark</td>
                     <td>Otto</td>
