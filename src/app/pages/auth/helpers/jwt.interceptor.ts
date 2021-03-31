@@ -3,7 +3,8 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,12 +17,16 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const apiKey = environment.apiKey;
     if (apiKey) {
-      request = request.clone({
-        setHeaders: {
-          'api-key': ` ${apiKey}`
-        }
-      });
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Content-Length': '<calculated when request is sent>',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache',
+        'api-key': apiKey
+      })
+      const cloneRequest = request.clone({ headers })
+      return next.handle(request);
     }
-    return next.handle(request);
+
   }
 }

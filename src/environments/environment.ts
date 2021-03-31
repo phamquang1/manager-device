@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   hmr: false,
-  apiKey: 'duyhai1995'
+  apiKey: 'duyhai1995',
+  apiUrl: 'http://vuaop.com:9090'
 };
 
 /*
