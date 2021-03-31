@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -11,11 +11,19 @@ export class LoginFormComponent implements OnInit {
   public form: FormGroup;
   public flatlogicEmail = 'admin@flatlogic.com';
   public flatlogicPassword = 'admin';
+  constructor(
+    private fb: FormBuilder
+  ) {
+
+  }
 
   public ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl(this.flatlogicEmail, [Validators.required, Validators.email]),
-      password: new FormControl(this.flatlogicPassword, [Validators.required])
+    this.initForm();
+  }
+  initForm() {
+    this.form = this.fb.group({
+      email: ['admin', Validators.required],
+      password: ['default', Validators.required]
     });
   }
 

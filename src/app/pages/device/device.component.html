@@ -1,9 +1,10 @@
 <app-layout>
     <div class="card m-3 p-3">
         <div class="d-flex justify-content-end mb-3">
-            <button type="button" class="btn btn-primary mr-1">Thêm mới</button>
-            <button type="button" class="btn btn-success mr-1">Sửa </button>
-            <button type="button" class="btn btn-danger">Xóa</button>
+            <button type="button" class="btn btn-primary mr-1" (click)="openCreateEditDialog()">Thêm mới</button>
+            <button type="button" class="btn btn-success mr-1" (click)="openCreateEditDialog(selectedDevice)">Sửa
+            </button>
+            <button type="button" class="btn btn-danger" (click)="removeDevice(selectedDevice)">Xóa</button>
         </div>
         <table class="table">
             <thead>
@@ -12,26 +13,32 @@
                     <th scope="col">Name</th>
                     <th scope="col">Mac</th>
                     <th scope="col">Video</th>
+                    <th scope="col">Location</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr (click)="onClickDevice()" [ngClass]="{
+                    'is-selected': selectedDevice === 1
+                  }">
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>@fat</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Larry</td>
                     <td>the Bird</td>
                     <td>@twitter</td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

@@ -13,13 +13,13 @@ export class NotificationService {
   notify(status: boolean, message?: any, title?: any) {
     if (status) {
       this.toastr.success(message, title, {
-        positionClass: 'toast-top-right'
-      })
+        positionClass: 'toast-bottom-right'
+      });
 
     } else {
       this.toastr.error(message, title, {
-        positionClass: 'toast-top-right'
-      })
+        positionClass: 'toast-bottom-right'
+      });
 
     }
   }
