@@ -8,6 +8,8 @@ import { CreateEditModalComponent } from './create-edit-modal/create-edit-modal.
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AgmCoreModule } from '@agm/core';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 
@@ -22,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg'
     }),
+    NgxPaginationModule
   ]
 })
 export class DeviceModule { }

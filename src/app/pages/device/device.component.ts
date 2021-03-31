@@ -12,6 +12,10 @@ import { CreateEditModalComponent } from './create-edit-modal/create-edit-modal.
 })
 export class DeviceComponent implements OnInit {
   selectedDevice: any;
+  pageSize: 5;
+  pageNumber: 1;
+  totalItems: 6;
+  listArr = [1, 2, 3, 3, 5, 4];
   constructor(
     public dialog: MatDialog,
     private notificationService: NotificationService,
@@ -23,10 +27,14 @@ export class DeviceComponent implements OnInit {
   onClickDevice() {
     this.selectedDevice = 1;
   }
+  getDataPage(event: any) {
+    console.log(event);
+    this.pageNumber = event;
+  }
   removeDevice(device: any) {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: 'You wont be able to revert this',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -38,9 +46,9 @@ export class DeviceComponent implements OnInit {
           'Deleted!',
           'Your file has been deleted.',
           'success'
-        )
+        );
       }
-    })
+    });
   }
   openCreateEditDialog(device?: any) {
     if (device) {
@@ -60,7 +68,7 @@ export class DeviceComponent implements OnInit {
       const dialogRef = this.dialog.open(CreateEditModalComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log("Dialog result:", result);
+          console.log('', result);
         }
 
       });
@@ -80,7 +88,7 @@ export class DeviceComponent implements OnInit {
       const dialogRef = this.dialog.open(CreateEditModalComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log("Dialog result:", result);
+          console.log('Dialog result:', result);
         }
 
       });

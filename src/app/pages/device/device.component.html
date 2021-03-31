@@ -17,7 +17,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="onClickDevice()" [ngClass]="{
+                <tr *ngFor="let item of (listArr | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} )"
+                    (click)="onClickDevice()" [ngClass]="{
                     'is-selected': selectedDevice === 1
                   }">
                     <th scope="row">1</th>
@@ -42,6 +43,7 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls id="server" (pageChange)="getDataPage($event)"></pagination-controls>
     </div>
     <app-footer></app-footer>
 </app-layout>
