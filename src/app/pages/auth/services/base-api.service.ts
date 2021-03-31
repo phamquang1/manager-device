@@ -18,15 +18,13 @@ export class BaseApiService {
   ) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Content-Length': '<calculated when request is sent>',
+        'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'no-cache',
-        'api-key': 'heleeee'
+        'api-key': 'hihih'
       })
     };
     this.httpHeaders = new HttpHeaders(this.httpOptions);
-    this.httpHeaders.set('api-key', 'hihi')
   }
   // api get method
   get(uri: string, params?: HttpParams) {

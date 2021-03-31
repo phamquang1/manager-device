@@ -17,16 +17,4 @@ export class AuthPageComponent {
     private service: AuthService,
     private router: Router
   ) { }
-
-  public sendLoginForm(): void {
-    this.service.login();
-
-    this.router.navigate([this.routers.DASHBOARD]).then();
-  }
-
-  public sendSignForm(): void {
-    this.service.sign();
-
-    this.router.navigate([this.routers.DASHBOARD]).then();
-  }
 }

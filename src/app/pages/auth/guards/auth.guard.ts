@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 import { routes } from '../../../consts';
 
 @Injectable()
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanActivate {
   public routers: typeof routes = routes;
 
   constructor(private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('key');
 
     if (token) {
       return true;

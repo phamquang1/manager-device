@@ -30,6 +30,7 @@ import { JwtInterceptor } from './pages/auth/helpers/jwt.interceptor';
     BrowserModule,
     SharedModule,
     AuthModule,
+    HttpClientModule,
     DashboardModule,
     BrowserAnimationsModule,
     RouterModule,
@@ -37,7 +38,7 @@ import { JwtInterceptor } from './pages/auth/helpers/jwt.interceptor';
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     {
