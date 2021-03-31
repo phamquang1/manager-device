@@ -16,6 +16,8 @@ const routers = {
 export class AuthService {
   public apiUrl = environment.apiUrl;
   private httpHeaders = new HttpHeaders();
+  private httpHeadersAuth = new HttpHeaders();
+
   private httpOptions = {};
 
   constructor(
@@ -38,6 +40,12 @@ export class AuthService {
     localStorage.setItem('token', 'token');
   }
   loginAuth(data: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Content-Length': '<calculated when request is sent>',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache',
+    })
     return this.http.post(this.apiUrl + routers.login, data, { headers: this.httpHeaders })
     // return this.httpClient.post(routers.login, data)
   }
@@ -47,8 +55,33 @@ export class AuthService {
   // }
 
   public sign(data: any) {
-    return this.httpClient.post(routers.account, data)
+    // let headers: HttpHeaders = new HttpHeaders();
+    // headers = headers.set('api-key', environment.apiKey)
+    return this.http.post(this.apiUrl + routers.account, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache',
+        // Authorization: 'BASIC RE9UTkVUOjVDNTFBQkUxLTY4MjgtNERBMS04NzBDLURCRTVDRjg5M0M1OQ==',
+        'api-key': environment.apiKey
+      })
+    })
   }
+  // public sign(data: any) {
+  //   let header = {}
+  //   header = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Content-Length': '<calculated when request is sent>',
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Cache-Control': 'no-cache',
+  //       'api-key': environment.apiKey,
+  //     })
+  //   }
+  //   this.httpHeadersAuth = new HttpHeaders(header)
+  //   this.httpHeadersAuth.set('hih', 'jij')
+  //   return this.http.post(this.apiUrl + routers.account, data, { headers: this.httpHeadersAuth })
+  // }
 
   public signOut() {
     localStorage.removeItem('token');

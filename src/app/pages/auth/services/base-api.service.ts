@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment.prod';
 
 
 @Injectable({
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 export class BaseApiService {
   private httpHeaders = new HttpHeaders();
   private httpOptions = {};
-  public apiUrl = environment.apiUrl;
+  public apiUrl = 'http://vuaop.com:9090';
 
 
   constructor(
@@ -18,10 +17,10 @@ export class BaseApiService {
   ) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
+        'Content-Length': '<calculated when request is sent>',
         'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'no-cache',
-        'api-key': 'hihih'
+        'Cache-Control': 'no-cache'
       })
     };
     this.httpHeaders = new HttpHeaders(this.httpOptions);

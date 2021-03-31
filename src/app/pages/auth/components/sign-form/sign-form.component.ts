@@ -10,7 +10,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-form.component.scss']
 })
 export class SignFormComponent implements OnInit {
+  @Output() sendSignForm = new EventEmitter<void>();
   private destroyed$ = new Subject();
+
   public form: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -35,7 +37,7 @@ export class SignFormComponent implements OnInit {
     });
   }
 
-  public sign() {
+  public sign(): void {
     // if (this.form.valid) {
     //   this.sendSignForm.emit();
     // }

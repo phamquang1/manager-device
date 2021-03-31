@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "lint": "ng lint",
     "hmr": "ng serve --configuration hmr"

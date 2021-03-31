@@ -1,10 +1,6 @@
 {
     "/api": {
-        "target": "http://27.72.88.15:83",
-        "secure": false,
-        "logLevel": "debug",
-        "pathRewrite": {
-            "^/api": ""
-        }
+        "target": "http://localhost:4200",
+        "secure": false
     }
 }
