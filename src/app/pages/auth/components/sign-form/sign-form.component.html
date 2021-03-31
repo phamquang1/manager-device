@@ -1,18 +1,19 @@
 <form class="form" [formGroup]="form" (ngSubmit)="sign()">
   <div class="form-group">
-    <input class="form-control" id="exampleInputEmail1" autocomplete="off" placeholder="Username">
+    <input class="form-control" id="exampleInputEmail1" autocomplete="off" placeholder="Username"
+      formControlName="username">
   </div>
   <div class="form-group">
-    <input class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password">
   </div>
   <div class="form-group">
-    <input class="form-control" id="exampleInputPassword1" placeholder="Name">
+    <input class="form-control" id="exampleInputPassword1" placeholder="Name" formControlName="name">
   </div>
   <div class="form-group">
-    <input class="form-control" id="exampleInputPassword1" placeholder="Phone">
+    <input class="form-control" id="exampleInputPassword1" placeholder="Phone" formControlName="phone">
   </div>
   <div class="form-group">
-    <input class="form-control" id="exampleInputPassword1" placeholder="Code">
+    <input class="form-control" id="exampleInputPassword1" placeholder="Code" formControlName="code">
   </div>
   <!-- <mat-form-field class="form__input" appearance="standard">
     <input matInput placeholder="Full name" formControlName="name">

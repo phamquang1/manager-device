@@ -22,7 +22,7 @@ export class BaseApiService {
         'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'no-cache'
       })
-    }
+    };
     this.httpHeaders = new HttpHeaders(this.httpOptions);
   }
   // api get method

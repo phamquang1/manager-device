@@ -17,6 +17,7 @@ import { DateMenuComponent } from './ui-elements/date-menu/date-menu.component';
 import { LayoutComponent } from './layout/layout.component';
 
 
+
 @NgModule({
   declarations: [
     SidebarComponent,
@@ -35,7 +36,7 @@ import { LayoutComponent } from './layout/layout.component';
     MatMenuModule,
     MatSelectModule,
     FormsModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   exports: [
     HeaderModule,
@@ -43,7 +44,7 @@ import { LayoutComponent } from './layout/layout.component';
     FooterComponent,
     SettingsMenuComponent,
     DateMenuComponent,
-    LayoutComponent
+    LayoutComponent,
   ]
 })
 export class SharedModule { }

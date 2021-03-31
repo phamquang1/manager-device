@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 import { NotificationService } from '../auth/services/notification.service';
 import { CreateEditModalComponent } from './create-edit-modal/create-edit-modal.component';
 
@@ -12,7 +14,8 @@ export class DeviceComponent implements OnInit {
   selectedDevice: any;
   constructor(
     public dialog: MatDialog,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -21,7 +24,23 @@ export class DeviceComponent implements OnInit {
     this.selectedDevice = 1;
   }
   removeDevice(device: any) {
-    this.notificationService.notify(false, 'delete', 'delete')
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   }
   openCreateEditDialog(device?: any) {
     if (device) {
@@ -68,5 +87,17 @@ export class DeviceComponent implements OnInit {
     }
 
   }
+  private _notify(isSuccess: boolean, message: string) {
+    return Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: isSuccess ? 'success' : 'error',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+    });
+  }
+
 
 }

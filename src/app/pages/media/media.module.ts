@@ -8,6 +8,8 @@ import { MediaDialogComponent } from './media-dialog/media-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateEditDialogComponent } from './create-edit-dialog/create-edit-dialog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 
@@ -20,7 +22,8 @@ import { CreateEditDialogComponent } from './create-edit-dialog/create-edit-dial
     MediaRoutingModule,
     MatDialogModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class MediaModule { }

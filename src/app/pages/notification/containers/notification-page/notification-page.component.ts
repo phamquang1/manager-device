@@ -23,7 +23,7 @@ export class NotificationPageComponent {
   public toastrPositionTypes: typeof ToastPositionTypes = ToastPositionTypes;
   public toastrPosition: string = this.toastrPositionTypes.topRight;
   public timeOut = 3000;
-  public toastrLink: string = 'https://github.com/scttcper/ngx-toastr';
+  public toastrLink = 'https://github.com/scttcper/ngx-toastr';
 
   constructor(private toastrService: ToastrService) {
   }

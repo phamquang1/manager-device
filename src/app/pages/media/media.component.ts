@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateEditDialogComponent } from './create-edit-dialog/create-edit-dialog.component';
+import Swal from 'sweetalert2';
 import { MediaDialogComponent } from './media-dialog/media-dialog.component';
 
 @Component({
@@ -10,6 +11,10 @@ import { MediaDialogComponent } from './media-dialog/media-dialog.component';
 })
 export class MediaComponent implements OnInit {
   selectedMedia: any;
+  listArr = [1, 2, 3, 3, 5, 4];
+  pageSize: 5;
+  pageNumber: 1;
+  totalItems: 6;
   constructor(
     public dialog: MatDialog
   ) { }
@@ -19,7 +24,30 @@ export class MediaComponent implements OnInit {
   onClickMedia() {
     this.selectedMedia = 1;
   }
-  openCreateEdit(media: any) {
+  getDataPage(event: any) {
+    console.log(event);
+    this.pageNumber = event;
+  }
+  removeMedia(media: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+  openCreateEdit(media?: any) {
     if (media) {
       const dialogConfig = new MatDialogConfig();
 
@@ -83,6 +111,15 @@ export class MediaComponent implements OnInit {
         console.log("Dialog result:", result);
       }
 
+    });
+  }
+  private _notify(isSuccess: boolean, message: string) {
+    return Swal.fire({
+      position: 'top-end',
+      icon: isSuccess ? 'success' : 'error',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
     });
   }
 
