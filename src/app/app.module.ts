@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+// interceptor
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+//
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -12,7 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
+//phan trang
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ErrorInterceptor } from './pages/auth/helpers/error.interceptor';
+import { JwtInterceptor } from './pages/auth/helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -33,7 +39,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatButtonModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

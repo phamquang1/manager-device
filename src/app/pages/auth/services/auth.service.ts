@@ -5,7 +5,7 @@ import { User } from '../models';
 import { BaseApiService } from './base-api.service';
 
 const routers = {
-  login: ''
+  login: '/login'
 };
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,9 @@ export class AuthService {
   }
   login() {
     localStorage.setItem('token', 'token');
+  }
+  loginAuth(data: any) {
+    return this.httpClient.post(routers.login, data)
   }
   // public login(data: any){
   //   localStorage.setItem('token', 'token');

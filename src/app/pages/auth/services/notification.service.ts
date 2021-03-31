@@ -11,6 +11,7 @@ export class NotificationService {
   ) { }
   notify(isSuccess: boolean, title?: any) {
     return Swal.fire({
+      toast: true,
       position: 'top-end',
       icon: isSuccess ? 'success' : 'error',
       title,

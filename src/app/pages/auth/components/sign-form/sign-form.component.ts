@@ -17,11 +17,11 @@ export class SignFormComponent implements OnInit {
   }
   initForm() {
     this.form = this.fb.group({
-      username: ['admin', Validators.required],
-      password: ['default', Validators.required],
-      name: ['admin', Validators.required],
-      phone: ['default', Validators.required],
-      code: ['admin', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      code: ['', Validators.required],
     });
   }
 
