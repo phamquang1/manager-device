@@ -10,12 +10,13 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Tên thiết bị</th>
                     <th scope="col">Mac</th>
                     <th scope="col">Video</th>
-                    <th scope="col">Location</th>
+                    <th scope="col">Tên vị trí</th>
                     <th scope="col">Video size</th>
                     <th scope="col">Time</th>
+                    <th scope="col">Trạng thái</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,10 @@
                     <td>{{device.Location}}</td>
                     <td>{{device.Video_size}}</td>
                     <td>{{device.Video_time}}</td>
+                    <td>
+                        <span
+                            [class]="device.Status === 1 ? 'badge p-2 badge-pill badge-info' : 'badge p-2 badge-pill badge-secondary'">{{tranform(device.Status)}}</span>
+                    </td>
                 </tr>
 
             </tbody>

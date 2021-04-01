@@ -153,6 +153,14 @@ export class DeviceComponent implements OnInit {
       timerProgressBar: true,
     });
   }
+  tranform(status: number) {
+    if (status === 1) {
+      return 'Hoạt động'
+    }
+    if (status === 0) {
+      return 'Lỗi'
+    }
+  }
 
 
 }
