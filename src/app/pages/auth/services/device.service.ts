@@ -5,7 +5,10 @@ import { environment } from 'src/environments/environment.prod';
 
 const routers = {
   add: '/api/v1/device/add',
-  account: '/api/v1/account'
+  account: '/api/v1/account',
+  getListDevices: '/api/v1/device/list',
+  updateDevice: '/api/v1/device/edit',
+  deleteDevice: '/api/v1/device/delete'
 
 };
 @Injectable({
@@ -29,4 +32,14 @@ export class DeviceService {
   createAccount(data: any) {
     return this.http.post(this.apiUrl + routers.account, data, {})
   }
+  getListDevices(data: any) {
+    return this.http.post(this.apiUrl + routers.getListDevices, data, {})
+  }
+  updateDevice(data: any) {
+    return this.http.post(this.apiUrl + routers.updateDevice, data, {})
+  }
+  deleteDevice(data: any) {
+    return this.http.post(this.apiUrl + routers.deleteDevice, data)
+  }
+
 }

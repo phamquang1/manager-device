@@ -49,6 +49,9 @@ export class AuthService {
     return this.http.post(this.apiUrl + routers.login, data)
     // return this.httpClient.post(routers.login, data)
   }
+  createAccount(data: any) {
+    return this.http.post(this.apiUrl + routers.account, data, {})
+  }
   // public login(data: any){
   //   localStorage.setItem('token', 'token');
   //   return this.httpClient.post(routers.login, data);

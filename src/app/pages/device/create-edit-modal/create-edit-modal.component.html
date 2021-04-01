@@ -4,17 +4,37 @@
         <div class="row">
             <div class="col-6">
                 <div class="mat-typography">
-                    <h3>Develop across all platforms</h3>
-                    <p>Learn one way to build applications with Angular and reuse your code and abilities to build
-                        apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
+                    <form [formGroup]="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên thiết bị</label>
+                            <input class="form-control" id="exampleInputEmail1" formControlName="device_name">
 
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Tên vị trí</label>
+                            <input class="form-control" id="exampleInputPassword1" formControlName="location">
+                        </div>
+                        <div class="form-group" *ngIf="!data.ID">
+                            <label for="exampleInputPassword1">Mac</label>
+                            <input class="form-control" id="exampleInputPassword1" formControlName="mac">
+                        </div>
+                        <div class="form-group">
+                            <label for="long">Vị trí Long (VD: )</label>
+                            <input class="form-control" id="long" formControlName="long">
 
+                        </div>
+                        <div class="form-group">
+                            <label for="lat">Vị trí Lat (VD: )</label>
+                            <input class="form-control" id="lat" formControlName="lat">
+                        </div>
 
+                    </form>
                 </div>
             </div>
             <div class="col-6">
                 <div class="mat-typography">
-                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" class="agm-map">
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"
+                        [class]="data.ID ? 'agm-map' : 'agm-map-id'" (mapClick)="onMapClick($event)">
                         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true"></agm-marker>
                     </agm-map>
 

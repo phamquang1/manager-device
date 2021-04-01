@@ -2,10 +2,14 @@
 
 }
 .btn-wapper {
-    top: 315px;
+    top: 325px;
 }
 .agm-map {
     width: 100% !important;
-    height: 260px;
+    height: 280px;
+  }
+.agm-map-id {
+    width: 100% !important;
+    height: 310px;
   }
   

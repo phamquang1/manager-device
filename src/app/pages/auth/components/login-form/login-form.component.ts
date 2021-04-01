@@ -64,6 +64,9 @@ export class LoginFormComponent implements OnInit {
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(res.data.tocken);
       localStorage.setItem('key', decodedToken.key);
+      localStorage.setItem('user_id', res.data.id);
+      localStorage.setItem('username', res.data.username);
+
       console.log(res);
       if (res && res.meta.code === 200) {
         this.router.navigate(['/dashboard']);

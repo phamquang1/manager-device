@@ -18,7 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
     console.log(apiKey)
     request = request.clone({
       setHeaders: {
-        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Credentials": "false",
         "Access-Control-Allow-Headers": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Max",
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, UPDATE",
         "Access-Control-Request-Headers": "",

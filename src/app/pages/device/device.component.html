@@ -14,33 +14,24 @@
                     <th scope="col">Mac</th>
                     <th scope="col">Video</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Video size</th>
+                    <th scope="col">Time</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of (listArr | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} )"
-                    (click)="onClickDevice()" [ngClass]="{
-                    'is-selected': selectedDevice === 1
+                <tr *ngFor="let device of (listDevices | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} ); let i = index"
+                    (click)="onClickDevice(device)" [ngClass]="{
+                    'is-selected': selectedDevice?.ID == device.ID
                   }">
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td></td>
+                    <th scope="row">{{device.ID}}</th>
+                    <td>{{device.Device_name}}</td>
+                    <td>{{device.Mac}}</td>
+                    <td>{{device.Video_name}}</td>
+                    <td>{{device.Location}}</td>
+                    <td>{{device.Video_size}}</td>
+                    <td>{{device.Video_time}}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td></td>
-                </tr>
+
             </tbody>
         </table>
         <pagination-controls id="server" (pageChange)="getDataPage($event)"></pagination-controls>

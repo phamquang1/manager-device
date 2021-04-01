@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import { DeviceService } from '../../services/device.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-sign-form',
@@ -17,6 +19,8 @@ export class SignFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private deviceService: DeviceService,
+    private notificationService: NotificationService
   ) {
     this.initForm();
   }
@@ -47,9 +51,19 @@ export class SignFormComponent implements OnInit {
       "name": this.form.get('name').value,
       "phone": this.form.get('phone').value
     };
-    const sign$ = this.authService.sign(data).pipe(takeUntil(this.destroyed$));
+    const sign$ = this.deviceService.createAccount(data).pipe(takeUntil(this.destroyed$));
     sign$.subscribe((res: any) => {
       console.log(res)
+      if (res && res.meta.code === 200) {
+        this.notificationService.notify(true, res.meta.message);
+        this.form.patchValue({
+          username: '',
+          password: '',
+          name: '',
+          phone: '',
+          code: '',
+        });
+      }
     })
   }
 }
