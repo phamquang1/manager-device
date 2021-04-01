@@ -25,10 +25,10 @@
   <div class="container-fluid">
     <div class="card">
       <div class="row p-2">
-        <div class="col-md-4 mb-4">
-          <div class="card border border-primary">
-            <div class="card-header text-center text-center">
-              Thiết bị 1
+        <div class="col-md-4 mb-4" *ngFor="let device of listDevices">
+          <div [class]="device.Status === 1 ? 'card border border-primary' : 'card border border-danger'">
+            <div class="card-header text-center text-center text-uppercase font-weight-bold">
+              {{device.Device_name }}
             </div>
             <div class="card-body">
               <h5 class="card-title">Special title treatment</h5>
@@ -36,77 +36,9 @@
               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name</li>
-              <li class="list-group-item">Name video:</li>
-              <li class="list-group-item">Size:</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border border-danger">
-            <div class="card-header text-center">
-              Thiết bị 1
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name</li>
-              <li class="list-group-item">Name video:</li>
-              <li class="list-group-item">Size:</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header text-center">
-              Thiết bị 1
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name</li>
-              <li class="list-group-item">Name video:</li>
-              <li class="list-group-item">Size:</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header text-center">
-              Thiết bị 1
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name</li>
-              <li class="list-group-item">Name video:</li>
-              <li class="list-group-item">Size:</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header text-center">
-              Thiết bị 1
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name</li>
-              <li class="list-group-item">Name video:</li>
-              <li class="list-group-item">Size:</li>
+              <li class="list-group-item">Name : <span class="font-weight-bold">{{device.Device_name}}</span></li>
+              <li class="list-group-item">Name video: <span class="font-weight-bold">{{device.Video_name}}</span></li>
+              <li class="list-group-item">Size: <span class="font-weight-bold">{{device.Video_size}}</span></li>
             </ul>
           </div>
         </div>

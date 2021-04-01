@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Email, User } from '../../../../pages/auth/models';
 import { AuthService, EmailService } from '../../../../pages/auth/services';
 import { routes } from '../../../../consts';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { UnlockDialogComponent } from './unlock-dialog/unlock-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +23,8 @@ export class HeaderComponent {
   constructor(
     private userService: AuthService,
     private emailService: EmailService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
   ) {
     this.user$ = this.userService.getUser();
     this.emails$ = this.emailService.loadEmails();
@@ -31,6 +34,27 @@ export class HeaderComponent {
     this.isMenuOpened = !this.isMenuOpened;
 
     this.isShowSidebar.emit(this.isMenuOpened);
+  }
+  openUnlockDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '300px';
+    dialogConfig.width = '400px';
+
+    dialogConfig.data = {
+
+    };
+
+    // this.dialog.open(CourseDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(UnlockDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("Dialog result:", result);
+      }
+
+    });
   }
 
   public signOut(): void {

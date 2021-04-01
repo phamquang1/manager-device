@@ -91,7 +91,8 @@ export class AuthService {
   public signOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('key');
-    localStorage.clear()
+    localStorage.clear();
+    sessionStorage.clear();
   }
 
   public getUser(): Observable<User> {

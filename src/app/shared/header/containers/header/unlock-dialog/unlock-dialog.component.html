@@ -1,0 +1,45 @@
+<div class="position-relative">
+    <h3 class="text-center title-dialog border-bottom pb-1 border-primary text-uppercase text-danger">Unlock Full
+        Version</h3>
+    <div class="container-fluid">
+        <div class="mat-typography">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nhập mã code:</label>
+                    <input class="form-control" id="exampleInputEmail1" formControlName="device_name">
+
+                </div>
+            </form>
+            <div class="row mb-2">
+                <div class="col-3">
+                    <span>Liên hệ </span>
+                </div>
+                <div class="col-9">
+                    <span class="font-weight-bold">: Mạc Duy Hải</span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3">
+                    <span>Công ty </span>
+                </div>
+                <div class="col-9">
+                    <span class="font-weight-bold">: TODO Việt Nam</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <span>SĐT </span>
+                </div>
+                <div class="col-9">
+                    <span class="font-weight-bold">: 097xxx555</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-dialog-actions align="end" class="position-absolute fixed-bottom btn-wapper">
+        <button type="button" class="btn btn-primary mr-1" (click)="save()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+        <!-- <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+    </mat-dialog-actions>
+</div>

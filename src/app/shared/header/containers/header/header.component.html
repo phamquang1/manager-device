@@ -9,7 +9,7 @@
   </div>
 
   <div class="header-toolbar">
-    <a mat-flat-button class="unlock-button" target="_blank">Unlock Full Version</a>
+    <a mat-flat-button class="unlock-button" target="_blank" (click)="openUnlockDialog()">Unlock Full Version</a>
     <app-search></app-search>
     <app-notifications></app-notifications>
     <app-email [emails]="emails$ | async"></app-email>

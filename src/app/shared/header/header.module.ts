@@ -7,12 +7,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 import { HeaderComponent } from './containers';
 import { UserComponent, EmailComponent } from './components';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShortNamePipe } from './pipes';
+import { UnlockDialogComponent } from './containers/header/unlock-dialog/unlock-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,9 @@ import { ShortNamePipe } from './pipes';
     EmailComponent,
     NotificationsComponent,
     SearchComponent,
-    ShortNamePipe
+    ShortNamePipe,
+    UnlockDialogComponent,
+
   ],
   exports: [
     HeaderComponent
@@ -34,7 +41,10 @@ import { ShortNamePipe } from './pipes';
     MatMenuModule,
     MatButtonModule,
     MatInputModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HeaderModule { }
