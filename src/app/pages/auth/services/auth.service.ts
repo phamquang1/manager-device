@@ -16,8 +16,6 @@ const routers = {
 export class AuthService {
   public apiUrl = environment.apiUrl;
   private httpHeaders = new HttpHeaders();
-  private httpHeadersAuth = new HttpHeaders();
-
   private httpOptions = {};
 
   constructor(
@@ -46,7 +44,7 @@ export class AuthService {
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'no-cache',
     })
-    return this.http.post(this.apiUrl + routers.login, data, { headers: this.httpHeaders })
+    return this.http.post(this.apiUrl + routers.login, data)
     // return this.httpClient.post(routers.login, data)
   }
   // public login(data: any){
@@ -85,6 +83,8 @@ export class AuthService {
 
   public signOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('key');
+    localStorage.clear()
   }
 
   public getUser(): Observable<User> {
