@@ -7,15 +7,19 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NotificationService } from '../services/notification.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(
+    private notificationService: NotificationService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError(err => {
       console.log(err, 'hihihiih')
+      this.notificationService.notify(false, err.message)
       if (err.status === 401) {
         // auto logout if 401 response returned from api
         // this.authenticationService.logout();
