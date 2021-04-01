@@ -16,6 +16,8 @@ const routers = {
 export class AuthService {
   public apiUrl = environment.apiUrl;
   private httpHeaders = new HttpHeaders();
+  httpHeadersAuth = new HttpHeaders();
+
   private httpOptions = {};
 
   constructor(
@@ -52,34 +54,36 @@ export class AuthService {
   //   return this.httpClient.post(routers.login, data);
   // }
 
-  public sign(data: any) {
-    // let headers: HttpHeaders = new HttpHeaders();
-    // headers = headers.set('api-key', environment.apiKey)
-    return this.http.post(this.apiUrl + routers.account, data, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'no-cache',
-        // Authorization: 'BASIC RE9UTkVUOjVDNTFBQkUxLTY4MjgtNERBMS04NzBDLURCRTVDRjg5M0M1OQ==',
-        'api-key': environment.apiKey
-      })
-    })
-  }
   // public sign(data: any) {
-  //   let header = {}
-  //   header = {
+  //   // let headers: HttpHeaders = new HttpHeaders();
+  //   // headers = headers.set('api-key', environment.apiKey)
+  //   return this.http.post(this.apiUrl + routers.account, data, {
   //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json',
+  //       'Content-Type': 'text/plain',
   //       'Content-Length': '<calculated when request is sent>',
+  //       'Host': '<calculated when request is sent>',
   //       'Access-Control-Allow-Origin': '*',
   //       'Cache-Control': 'no-cache',
-  //       'api-key': environment.apiKey,
+  //       // Authorization: 'BASIC RE9UTkVUOjVDNTFBQkUxLTY4MjgtNERBMS04NzBDLURCRTVDRjg5M0M1OQ==',
+  //       // 'api-key': environment.apiKey
   //     })
-  //   }
-  //   this.httpHeadersAuth = new HttpHeaders(header)
-  //   this.httpHeadersAuth.set('hih', 'jij')
-  //   return this.http.post(this.apiUrl + routers.account, data, { headers: this.httpHeadersAuth })
+  //   })
   // }
+  sign(data: any) {
+    let header = {}
+    header = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Content-Length': '<calculated when request is sent>',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache',
+        'api-key': environment.apiKey,
+      })
+    }
+    this.httpHeadersAuth = new HttpHeaders(header)
+    this.httpHeadersAuth.set('hih', 'jij')
+    return this.http.post(this.apiUrl + routers.account, data, { headers: this.httpHeadersAuth })
+  }
 
   public signOut() {
     localStorage.removeItem('token');

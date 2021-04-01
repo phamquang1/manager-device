@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment.prod';
 
 const routers = {
   add: '/api/v1/device/add',
+  account: '/api/v1/account'
+
 };
 @Injectable({
   providedIn: 'root'
@@ -23,5 +25,8 @@ export class DeviceService {
       //   key: 'heloo'
       // })
     })
+  }
+  createAccount(data: any) {
+    return this.http.post(this.apiUrl + routers.account, data, {})
   }
 }
