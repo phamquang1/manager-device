@@ -3,6 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateEditDialogComponent } from './create-edit-dialog/create-edit-dialog.component';
 import Swal from 'sweetalert2';
 import { MediaDialogComponent } from './media-dialog/media-dialog.component';
+import { MediaService } from '../auth/services/media.service';
+import { takeUntil, tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { NotificationService } from '../auth/services/notification.service';
 
 @Component({
   selector: 'app-media',
@@ -10,16 +14,32 @@ import { MediaDialogComponent } from './media-dialog/media-dialog.component';
   styleUrls: ['./media.component.css']
 })
 export class MediaComponent implements OnInit {
+  private destroyed$ = new Subject();
+  isLoading: boolean = false;
+
   selectedMedia: any;
   listArr = [1, 2, 3, 3, 5, 4];
   pageSize: 5;
   pageNumber: 1;
   totalItems: 6;
+  user_id: any;
+  username: any;
+  key: any;
   constructor(
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    private mediaService: MediaService,
+    private notificationService: NotificationService,
+  ) {
+    this.user_id = Number(localStorage.getItem('user_id'));
+    this.username = localStorage.getItem('username');
+    this.key = localStorage.getItem('key');
+  }
 
   ngOnInit(): void {
+  }
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
   onClickMedia() {
     this.selectedMedia = 1;
@@ -27,6 +47,29 @@ export class MediaComponent implements OnInit {
   getDataPage(event: any) {
     console.log(event);
     this.pageNumber = event;
+  }
+  changeVideo(event) {
+    console.log(event.target.files)
+    if (event.target.files[0]) {
+      const data = {
+        user_id: this.user_id,
+        file: event.target.files[0],
+        key: this.key
+      }
+      this.isLoading = true;
+      const uploadVideo$ = this.mediaService.uploadVideo(data).pipe(
+        tap(() => this.isLoading = true),
+        takeUntil(this.destroyed$));
+      uploadVideo$.subscribe((res: any) => {
+        console.log(res, 'upload file')
+        this.isLoading = false;
+        this.notificationService.notify(false, res.meta.message);
+      }, err => {
+        this.isLoading = false;
+        console.log(err)
+        this.notificationService.notify(false, err);
+      })
+    }
   }
   removeMedia(media: any) {
     Swal.fire({

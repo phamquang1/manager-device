@@ -9,7 +9,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">STT</th>
                     <th scope="col">Name</th>
                     <th scope="col">Mac</th>
                     <th scope="col">Video</th>
@@ -19,11 +19,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let device of (listDevices | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} ); let i = index"
+                <tr *ngFor="let device of (listDevices | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} ); let index = index"
                     (click)="onClickDevice(device)" [ngClass]="{
                     'is-selected': selectedDevice?.ID == device.ID
                   }">
-                    <th scope="row">{{device.ID}}</th>
+                    <th>{{ index + 1 + ( pageNumber - 1 ) * pageSize }}</th>
                     <td>{{device.Device_name}}</td>
                     <td>{{device.Mac}}</td>
                     <td>{{device.Video_name}}</td>

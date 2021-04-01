@@ -18,9 +18,9 @@ export class DeviceComponent implements OnInit {
   private destroyed$ = new Subject();
   listDevices: Device[] = [];
   selectedDevice: any;
-  pageSize: 5;
-  pageNumber: 1;
-  totalItems: 6;
+  pageSize: number = 5;
+  pageNumber: number = 1;
+  totalItems: number = 6;
   listArr = [1, 2, 3, 3, 5, 4];
   user_id: any;
   username: any;
@@ -29,7 +29,8 @@ export class DeviceComponent implements OnInit {
     public dialog: MatDialog,
     private notificationService: NotificationService,
     private toastr: ToastrService,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+
   ) {
     this.user_id = Number(localStorage.getItem('user_id'));
     this.username = localStorage.getItem('username');
@@ -40,6 +41,7 @@ export class DeviceComponent implements OnInit {
   ngOnInit(): void {
 
     this.getListDevices();
+    console.log((this.pageNumber - 1) * this.pageSize)
   }
   ngOnDestroy() {
     this.destroyed$.next();
