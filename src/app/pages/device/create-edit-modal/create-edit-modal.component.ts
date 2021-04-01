@@ -38,7 +38,17 @@ export class CreateEditModalComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    // this.dialogRef.close();
+    const data = {
+      "username": 'demo',
+      "password": '123456',
+      "name": 'quang',
+      "phone": '0972183648'
+    };
+    const create$ = this.deviceService.createAccount(data)
+    create$.subscribe((res: any) => {
+      console.log(res)
+    })
   }
 
 }
