@@ -18,10 +18,9 @@ export class DeviceComponent implements OnInit {
   private destroyed$ = new Subject();
   listDevices: Device[] = [];
   selectedDevice: Device;
-  pageSize: number = 5;
+  pageSize: number = 10;
   pageNumber: number = 1;
-  totalItems: number = 6;
-  listArr = [1, 2, 3, 3, 5, 4];
+  totalItems: number = 10;
   user_id: any;
   username: any;
   key: any;
