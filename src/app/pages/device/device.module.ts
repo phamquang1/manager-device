@@ -23,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     SharedModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg'
+      apiKey: 'AIzaSyB8EWR3BrJjN9HsVT5wQiq_rPGgrwtKfjY'
     }),
     NgxPaginationModule,
     ReactiveFormsModule,

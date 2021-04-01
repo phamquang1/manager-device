@@ -62,8 +62,10 @@ export class MediaComponent implements OnInit {
         takeUntil(this.destroyed$));
       uploadVideo$.subscribe((res: any) => {
         console.log(res, 'upload file')
-        this.isLoading = false;
-        this.notificationService.notify(false, res.meta.message);
+        if (res.meta.code === 200) {
+          this.isLoading = false;
+          this.notificationService.notify(true, res.meta.message);
+        }
       }, err => {
         this.isLoading = false;
         console.log(err)
