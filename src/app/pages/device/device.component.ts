@@ -17,7 +17,7 @@ import { CreateEditModalComponent } from './create-edit-modal/create-edit-modal.
 export class DeviceComponent implements OnInit {
   private destroyed$ = new Subject();
   listDevices: Device[] = [];
-  selectedDevice: any;
+  selectedDevice: Device;
   pageSize: number = 5;
   pageNumber: number = 1;
   totalItems: number = 6;
@@ -91,7 +91,10 @@ export class DeviceComponent implements OnInit {
           if (res.meta.code === 200) {
             this.notificationService.notify(true, res.meta.message);
             this.getListDevices();
+            this.selectedDevice = {} as Device;
           }
+        }, err => {
+          this.notificationService.notify(false, err);
         });
       }
     });
@@ -103,7 +106,7 @@ export class DeviceComponent implements OnInit {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.height = '400px';
-      dialogConfig.width = '600px';
+      dialogConfig.width = '800px';
 
       dialogConfig.data = device;
 
