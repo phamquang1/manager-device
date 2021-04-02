@@ -11,4 +11,6 @@ export interface Device {
     Video_name: string;
     Video_size: number
     Video_time: number;
+    Map_long: any;
+    Map_lat: any
 }

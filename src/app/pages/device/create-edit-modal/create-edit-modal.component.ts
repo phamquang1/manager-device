@@ -44,8 +44,8 @@ export class CreateEditModalComponent implements OnInit {
       this.form.patchValue({
         device_name: this.data.Device_name,
         location: this.data.Location,
-        long: 105.8194541,
-        lat: 21.0227788
+        map_long: this.data.Map_long,
+        map_lat: this.data.Map_lat
       });
     }
   }
@@ -57,8 +57,8 @@ export class CreateEditModalComponent implements OnInit {
     this.form = this.fb.group({
       device_name: ['', Validators.required],
       location: ['', Validators.required],
-      long: ['', Validators.required],
-      lat: ['', Validators.required],
+      map_long: ['', Validators.required],
+      map_lat: ['', Validators.required],
       mac: ['', Validators.required]
     });
   }
@@ -68,6 +68,8 @@ export class CreateEditModalComponent implements OnInit {
       "mac": this.data.ID ? this.data.Mac : this.form.get('mac').value,
       "device_name": this.form.get('device_name').value,
       "location": this.form.get('location').value,
+      "map_long": this.form.get('map_long').value.toString(),
+      "map_lat": this.form.get('map_lat').value.toString(),
       "key": localStorage.getItem("key")
     }
     if (this.data.ID) {
@@ -102,8 +104,8 @@ export class CreateEditModalComponent implements OnInit {
     this.lat = event.coords.lat;
     this.lng = event.coords.lng;
     this.form.patchValue({
-      long: event.coords.lng,
-      lat: event.coords.lat
+      map_long: event.coords.lng.toString(),
+      map_lat: event.coords.lat.toString()
     });
   }
 
