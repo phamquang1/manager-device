@@ -47,7 +47,6 @@ export class AuthService {
       'Cache-Control': 'no-cache',
     })
     return this.http.post(this.apiUrl + routers.login, data)
-    // return this.httpClient.post(routers.login, data)
   }
   createAccount(data: any) {
     return this.http.post(this.apiUrl + routers.account, data, {})
@@ -97,8 +96,8 @@ export class AuthService {
 
   public getUser(): Observable<User> {
     return of({
-      name: 'John',
-      lastName: 'Smith'
+      name: 'Vua',
+      lastName: 'OP'
     });
   }
 }

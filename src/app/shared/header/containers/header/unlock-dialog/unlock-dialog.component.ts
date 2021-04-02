@@ -21,7 +21,7 @@ export class UnlockDialogComponent implements OnInit {
   }
   initForm() {
     this.form = this.fb.group({
-      device_name: ['', Validators.required],
+      code: ['VN-VINFAST', Validators.required],
     });
   }
   save() {

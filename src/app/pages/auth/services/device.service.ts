@@ -24,9 +24,6 @@ export class DeviceService {
 
   createDevice(data: any) {
     return this.http.post(this.apiUrl + routers.add, data, {
-      // headers: new HttpHeaders({
-      //   key: 'heloo'
-      // })
     })
   }
   createAccount(data: any) {

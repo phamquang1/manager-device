@@ -12,9 +12,12 @@ export class UserComponent {
   @Input() user: User;
   @Output() signOut: EventEmitter<void> = new EventEmitter<void>();
   public routes: typeof routes = routes;
-  public flatlogicEmail: string = "https://flatlogic.com";
-
-  public signOutEmit(): void {
+  public Email: string = "";
+  username: string;
+  ngOnInit() {
+    this.username = localStorage.getItem('username');
+  }
+  public signOutEmit() {
     this.signOut.emit();
   }
 }

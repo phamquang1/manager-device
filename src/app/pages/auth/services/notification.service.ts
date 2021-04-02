@@ -16,7 +16,7 @@ export class NotificationService {
       icon: isSuccess ? 'success' : 'error',
       title,
       showConfirmButton: false,
-      timer: 1500
+      timer: 2500
     });
   }
 }
