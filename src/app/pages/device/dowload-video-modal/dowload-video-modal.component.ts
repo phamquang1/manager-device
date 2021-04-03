@@ -68,9 +68,10 @@ export class DowloadVideoModalComponent implements OnInit {
       if (paload["status"] === 1) {
         this.isLoading = false;
         this.notificationService.notify(true, 'Push success');
+        this.dialogRef.close(true);
       } else {
         this.isLoading = false;
-        this.notificationService.notify(true, 'Push error');
+        this.notificationService.notify(false, 'Push error');
       }
     })
 
@@ -83,7 +84,12 @@ export class DowloadVideoModalComponent implements OnInit {
     const getVideos$ = this.mediaService.listVideos(data).pipe(takeUntil(this.destroyed$));
     getVideos$.subscribe((res: any) => {
       if (res.meta.code === 200) {
-        this.listVideos = res.data.Medias;
+        this.listVideos = res.data.Medias.map(element => {
+          return {
+            ...element,
+            Video_size: element.Video_size / (1024 * 1024) > 1 ? Math.round((element.Video_size / (1024 * 1024)) * 10) / 10 : (element.Video_size / (1024 * 1024)).toString().substring(0, 5)
+          }
+        });
       } else {
 
       }

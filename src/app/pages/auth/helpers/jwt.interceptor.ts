@@ -18,7 +18,9 @@ export class JwtInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         'api-key': environment.apiKey,
-        'Authorization': `api-key ${apiKey}`
+        'Authorization': `api-key ${apiKey}`,
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Cache-Control': 'no-cache',
       }
     });
     return next.handle(request);

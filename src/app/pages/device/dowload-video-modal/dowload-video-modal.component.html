@@ -18,10 +18,10 @@
                         (click)="onClickVideo(video)" [ngClass]="{
                         'is-selected': selectedVideo?.ID === video.ID
                       }">
-                        <th scope="row">{{index + 1 + ( pageNumber - 1 ) * pageSize }}</th>
+                        <th>{{index + 1 + ( pageNumber - 1 ) * pageSize }}</th>
                         <!-- <td ></td> -->
                         <td>{{video.Video_name}}</td>
-                        <td>{{video.Video_size}}</td>
+                        <td>{{video.Video_size}} MB</td>
                         <td>{{video.Video_time}}</td>
                         <td>
                             <a class="cursor-pointer" (click)="onPush(video)"><i class="fa fa-download text-primary "

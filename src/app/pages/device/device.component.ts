@@ -61,7 +61,12 @@ export class DeviceComponent implements OnInit {
 
     }).pipe(takeUntil(this.destroyed$));
     getDevices$.subscribe((res: any) => {
-      this.listDevices = res.data.Devices
+      this.listDevices = res.data.Devices.map(element => {
+        return {
+          ...element,
+          Video_size: element.Video_size / (1024 * 1024) > 1 ? Math.round((element.Video_size / (1024 * 1024)) * 10) / 10 : (element.Video_size / (1024 * 1024)).toString().substring(0, 5)
+        }
+      })
     });
   }
   removeDevice(device: Device) {
@@ -152,12 +157,12 @@ export class DeviceComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           console.log('call api list', result);
-
+          this.getListDevices();
         }
 
       });
     } else {
-      this.notificationService.notify(false, 'Bạn chưa chọn video !')
+      this.notificationService.notify(false, 'Bạn chưa chọn thiết bị !')
     }
   }
   openMediaDialog(video: any) {

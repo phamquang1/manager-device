@@ -51,10 +51,6 @@ export class MediaComponent implements OnInit {
     console.log(event);
     this.pageNumber = event;
   }
-  onAlert() {
-    this.notificationService.notify(false, 'Định dạng video cho phép : .mp4')
-
-  }
   changeVideo(event) {
     console.log(event.target.files[0])
     if (event.target.files[0]) {
@@ -92,7 +88,7 @@ export class MediaComponent implements OnInit {
         this.listVideos = res.data.Medias.map(element => {
           return {
             ...element,
-            Video_size: element.Video_size / (1024 * 1024)
+            Video_size: element.Video_size / (1024 * 1024) > 1 ? Math.round((element.Video_size / (1024 * 1024)) * 10) / 10 : (element.Video_size / (1024 * 1024)).toString().substring(0, 5)
           }
         });;
 
