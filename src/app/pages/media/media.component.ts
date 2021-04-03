@@ -7,6 +7,7 @@ import { MediaService } from '../auth/services/media.service';
 import { takeUntil, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NotificationService } from '../auth/services/notification.service';
+import { Media } from '../auth/models/media';
 
 @Component({
   selector: 'app-media',
@@ -16,12 +17,13 @@ import { NotificationService } from '../auth/services/notification.service';
 export class MediaComponent implements OnInit {
   private destroyed$ = new Subject();
   isLoading: boolean = false;
+  listVideos: Media[] = [];
 
-  selectedMedia: any;
+  selectedMedia: Media;
   listArr = [1, 2, 3, 3, 5, 4];
-  pageSize: 5;
-  pageNumber: 1;
-  totalItems: 6;
+  pageSize: number = 10;
+  pageNumber: number = 1;
+  totalItems: number = 10;
   user_id: any;
   username: any;
   key: any;
@@ -36,20 +38,25 @@ export class MediaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getListvideos();
   }
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
-  onClickMedia() {
-    this.selectedMedia = 1;
+  onClickMedia(media: Media) {
+    this.selectedMedia = media;
   }
   getDataPage(event: any) {
     console.log(event);
     this.pageNumber = event;
   }
+  onAlert() {
+    this.notificationService.notify(false, 'Định dạng video cho phép : .mp4')
+
+  }
   changeVideo(event) {
-    console.log(event.target.files)
+    console.log(event.target.files[0])
     if (event.target.files[0]) {
       const data = {
         user_id: this.user_id,
@@ -61,7 +68,6 @@ export class MediaComponent implements OnInit {
         tap(() => this.isLoading = true),
         takeUntil(this.destroyed$));
       uploadVideo$.subscribe((res: any) => {
-        console.log(res, 'upload file')
         if (res.meta.code === 200) {
           this.isLoading = false;
           this.notificationService.notify(true, res.meta.message);
@@ -73,22 +79,59 @@ export class MediaComponent implements OnInit {
       })
     }
   }
-  removeMedia(media: any) {
+  getListvideos() {
+    const data = {
+      "user_id": this.user_id,
+      "key": this.key
+    };
+    const getVideos$ = this.mediaService.listVideos(data).pipe(takeUntil(this.destroyed$));
+    getVideos$.subscribe((res: any) => {
+      console.log(res)
+      if (res.meta.code === 200) {
+
+        this.listVideos = res.data.Medias.map(element => {
+          return {
+            ...element,
+            Video_size: element.Video_size / (1024 * 1024)
+          }
+        });;
+
+      } else {
+
+      }
+    }, err => {
+      this.notificationService.notify(false, err)
+    });
+
+  }
+  removeMedia(media: Media) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: `Xóa ${media.Video_name} ?`,
+      text: 'Bạn chắc chắn muốn xóa',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Không'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        const data = {
+          "id": media.ID,
+          "user_id": this.user_id,
+          "key": this.key
+        };
+        const deleteVideo$ = this.mediaService.deleteVideo(data).pipe(takeUntil(this.destroyed$));
+        deleteVideo$.subscribe((res: any) => {
+          if (res.meta.code === 200) {
+            this.notificationService.notify(true, res.meta.message);
+            this.getListvideos();
+          } else {
+
+          }
+        }, err => {
+          this.notificationService.notify(false, err)
+        });
       }
     })
   }
@@ -136,7 +179,7 @@ export class MediaComponent implements OnInit {
       });
     }
   }
-  openMediaDialog() {
+  openMediaDialog(video: Media) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

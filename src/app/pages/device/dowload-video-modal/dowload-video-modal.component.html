@@ -1,0 +1,46 @@
+<div class="position-relative">
+    <h3 class="text-center title-dialog border-bottom pb-1 border-primary">Dowload Video</h3>
+    <div class="container-fluid">
+        <div class="row dowload-video">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Video</th>
+                        <!-- <th scope="col">Name</th> -->
+                        <th scope="col">Size</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Push</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let video of (listVideos | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} ); let index = index"
+                        (click)="onClickVideo(video)" [ngClass]="{
+                        'is-selected': selectedVideo?.ID === video.ID
+                      }">
+                        <th scope="row">{{index + 1 + ( pageNumber - 1 ) * pageSize }}</th>
+                        <!-- <td ></td> -->
+                        <td>{{video.Video_name}}</td>
+                        <td>{{video.Video_size}}</td>
+                        <td>{{video.Video_time}}</td>
+                        <td>
+                            <a class="cursor-pointer" (click)="onPush(video)"><i class="fa fa-download text-primary "
+                                    aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <mat-dialog-actions align="end" class="position-absolute fixed-bottom btn-wapper">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+        <!-- <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+    </mat-dialog-actions>
+</div>
+<div class="loading" *ngIf="isLoading">Loading&#8230;</div>

@@ -19,8 +19,18 @@ import { AuthModule } from './pages/auth/auth.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ErrorInterceptor } from './pages/auth/helpers/error.interceptor';
 import { JwtInterceptor } from './pages/auth/helpers/jwt.interceptor';
+import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
+import { environment as env } from '../environments/environment.prod';
 
 
+const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  connectOnCreate: true,
+  hostname: env.mqtt.server,
+  port: env.mqtt.port,
+  protocol: (env.mqtt.protocol === "wss") ? "wss" : "ws",
+  path: '',
+
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +49,8 @@ import { JwtInterceptor } from './pages/auth/helpers/jwt.interceptor';
     MatCardModule,
     MatButtonModule,
     NgxPaginationModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
+
   ],
   providers: [
     {

@@ -4,21 +4,18 @@
         <div class="d-flex justify-content-end mb-3">
             <div>
                 <label for="file-upload" class="btn btn-warning mr-1 d-flex">
-                    <!-- <mat-icon class="material-icons d-inline-block mr-2 text-white" style="height: 5px; width: 15%;">
-                        upload
-                    </mat-icon> -->
                     <i class="fa fa-upload text-white mr-1" aria-hidden="true"></i>
                     <span style="display: block;
                     " class="text-white">Upload video</span>
                 </label>
                 <input id="file-upload" type="file" style="display: none;" onclick="this.value = null"
-                    (change)="changeVideo($event)" />
+                    (change)="changeVideo($event)" (click)="onAlert()" />
             </div>
             <div class="d-flex justify-content-end mb-3">
 
                 <!-- <button type="button" class="btn btn-warning mr-1" (click)="openCreateEdit()">Upload video</button> -->
                 <button type="button" class="btn btn-primary mr-1" (click)="openCreateEdit()">Thêm mới</button>
-                <button type="button" class="btn btn-success mr-1" (click)="openCreateEdit(selectedMedia)">Sửa </button>
+                <!-- <button type="button" class="btn btn-success mr-1" (click)="openCreateEdit(selectedMedia)">Sửa </button> -->
                 <button type="button" class="btn btn-danger" (click)="removeMedia(selectedMedia)">Xóa</button>
             </div>
         </div>
@@ -28,32 +25,23 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Video</th>
-                    <th scope="col">Name</th>
+                    <!-- <th scope="col">Name</th> -->
                     <th scope="col">Size</th>
+                    <th scope="col">Time</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of (listArr | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} )"
-                    (click)="onClickMedia()" [ngClass]="{
-                    'is-selected': selectedMedia === 1
+                <tr *ngFor="let video of (listVideos | paginate: {id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems} ); let index = index"
+                    (click)="onClickMedia(video)" [ngClass]="{
+                    'is-selected': selectedMedia?.ID === video.ID
                   }">
-                    <th scope="row">1</th>
-                    <td (click)="openMediaDialog()">Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{index + 1 + ( pageNumber - 1 ) * pageSize }}</th>
+                    <!-- <td ></td> -->
+                    <td (click)="openMediaDialog(video)">{{video.Video_name}}</td>
+                    <td>{{video.Video_size}} MB</td>
+                    <td>{{video.Video_time}}</td>
                 </tr>
-                <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr> -->
+
             </tbody>
         </table>
         <pagination-controls id="server" (pageChange)="getDataPage($event)"></pagination-controls>

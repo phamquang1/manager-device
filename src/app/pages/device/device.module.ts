@@ -10,12 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { AgmCoreModule } from '@agm/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DowloadVideoModalComponent } from './dowload-video-modal/dowload-video-modal.component';
 
 
 
 
 @NgModule({
-  declarations: [DeviceComponent, CreateEditModalComponent],
+  declarations: [DeviceComponent, CreateEditModalComponent, DowloadVideoModalComponent],
   imports: [
     CommonModule,
     DeviceRoutingModule,

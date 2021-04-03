@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Device } from '../auth/models/device';
 import { DeviceService } from '../auth/services/device.service';
 import { NotificationService } from '../auth/services/notification.service';
+import { MediaDialogComponent } from '../media/media-dialog/media-dialog.component';
 import { CreateEditModalComponent } from './create-edit-modal/create-edit-modal.component';
+import { DowloadVideoModalComponent } from './dowload-video-modal/dowload-video-modal.component';
 
 @Component({
   selector: 'app-device',
@@ -27,7 +28,6 @@ export class DeviceComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private notificationService: NotificationService,
-    private toastr: ToastrService,
     private deviceService: DeviceService,
 
   ) {
@@ -40,7 +40,6 @@ export class DeviceComponent implements OnInit {
   ngOnInit(): void {
 
     this.getListDevices();
-    console.log((this.pageNumber - 1) * this.pageSize)
   }
   ngOnDestroy() {
     this.destroyed$.next();
@@ -48,7 +47,6 @@ export class DeviceComponent implements OnInit {
   }
   onClickDevice(device: Device) {
     this.selectedDevice = device;
-    console.log(device, this.selectedDevice)
 
   }
   getDataPage(event: any) {
@@ -63,7 +61,6 @@ export class DeviceComponent implements OnInit {
 
     }).pipe(takeUntil(this.destroyed$));
     getDevices$.subscribe((res: any) => {
-      console.log(res)
       this.listDevices = res.data.Devices
     });
   }
@@ -86,7 +83,6 @@ export class DeviceComponent implements OnInit {
         };
         const deleteDevice$ = this.deviceService.deleteDevice(data).pipe(takeUntil(this.destroyed$));
         deleteDevice$.subscribe((res: any) => {
-          console.log(res)
           if (res.meta.code === 200) {
             this.notificationService.notify(true, res.meta.message);
             this.getListDevices();
@@ -113,7 +109,6 @@ export class DeviceComponent implements OnInit {
       const dialogRef = this.dialog.open(CreateEditModalComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log('call api list', result);
           this.getListDevices();
         }
 
@@ -134,13 +129,58 @@ export class DeviceComponent implements OnInit {
       const dialogRef = this.dialog.open(CreateEditModalComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log('Dialog result:', result);
           this.getListDevices();
         }
 
       });
     }
 
+  }
+  openDowloadDialog(device: Device) {
+    if (device) {
+      const dialogConfig = new MatDialogConfig();
+
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.height = '400px';
+      dialogConfig.width = '800px';
+
+      dialogConfig.data = device;
+
+      // this.dialog.open(CourseDialogComponent, dialogConfig);
+      const dialogRef = this.dialog.open(DowloadVideoModalComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log('call api list', result);
+
+        }
+
+      });
+    } else {
+      this.notificationService.notify(false, 'Bạn chưa chọn video !')
+    }
+  }
+  openMediaDialog(video: any) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '400px';
+    dialogConfig.width = '600px';
+
+    dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };
+
+    // this.dialog.open(CourseDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(MediaDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("Dialog result:", result);
+      }
+
+    });
   }
   private _notify(isSuccess: boolean, message: string) {
     return Swal.fire({

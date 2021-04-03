@@ -29,6 +29,7 @@
     "jquery": "^3.6.0",
     "ng-apexcharts": "^1.2.3",
     "ngx-echarts": "^4.2.2",
+    "ngx-mqtt": "^8.0.3",
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^12.1.0",
     "ngx-trend": "^5.0.1",
