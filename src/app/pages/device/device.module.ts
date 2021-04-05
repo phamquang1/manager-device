@@ -24,7 +24,7 @@ import { DowloadVideoModalComponent } from './dowload-video-modal/dowload-video-
     MatButtonModule,
     SharedModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB8EWR3BrJjN9HsVT5wQiq_rPGgrwtKfjY'
+      apiKey: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg'
     }),
     NgxPaginationModule,
     ReactiveFormsModule,

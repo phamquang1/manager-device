@@ -67,6 +67,7 @@ export class MediaComponent implements OnInit {
         if (res.meta.code === 200) {
           this.isLoading = false;
           this.notificationService.notify(true, res.meta.message);
+          this.getListvideos();
         }
       }, err => {
         this.isLoading = false;
@@ -84,6 +85,7 @@ export class MediaComponent implements OnInit {
     getVideos$.subscribe((res: any) => {
       console.log(res)
       if (res.meta.code === 200) {
+        console.log(res.data.Medias)
 
         this.listVideos = res.data.Medias.map(element => {
           return {

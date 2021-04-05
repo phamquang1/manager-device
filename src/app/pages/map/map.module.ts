@@ -6,7 +6,8 @@ import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-
+// 
+// AIzaSyB8EWR3BrJjN9HsVT5wQiq_rPGgrwtKfjY
 @NgModule({
   declarations: [MapComponent],
   imports: [
@@ -14,7 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MapRoutingModule,
     SharedModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB8EWR3BrJjN9HsVT5wQiq_rPGgrwtKfjY'
+      apiKey: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg'
     }),
   ]
 })
